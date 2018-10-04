@@ -2,6 +2,7 @@
 /*eslint no-unused-vars:0 no-eval:0*/
 
 import React, { Component } from 'react';
+import request from 'request';
 
 class Errors extends Component {
 
@@ -29,6 +30,22 @@ class Errors extends Component {
         Sentry.configureScope((scope) => {
             scope.setUser({email});
         });
+    }
+
+    badRequest() {
+        // var request = require('request');
+
+        request.post('http://localhost:3000/abc', {
+            form: { foo: "bar" },
+            headers: {
+                'transactionId': '_' + Math.random().toString(36).substr(2, 9) // generate unique ID
+            }
+        }, function (error, res, body) {
+            if (res.statusCode !== 200) {
+                throw new Error("Bad response: " + res.statusCode);
+            }
+        });
+
     }
 
     // ERRORS
@@ -96,6 +113,10 @@ class Errors extends Component {
                     <ul className="center list-group " onClick={this.showError.bind(this, 'red')}>
                         <li className="list-group-item list-group-item-danger">
                             <h3>ERRORS</h3>
+                        </li>
+                        <li className="list-group-item" onClick={this.badRequest}>
+                            <h3>Request failed / Bad response</h3>
+                            <p>TODO</p>
                         </li>
                         <li className="list-group-item" onClick={this.notAFunctionError}>
                             <h3>TypeError</h3>
