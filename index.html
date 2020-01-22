@@ -1,1 +1,12 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name="theme-color" content="#000000"><link rel="manifest" href="/react/manifest.json"><link rel="shortcut icon" href="/react/favicon.ico"><title>Sentry Demo</title><script src="https://browser.sentry-cdn.com/4.0.5/bundle.min.js" crossorigin="anonymous"></script><script>Sentry.init({dsn:"https://9057d77c278543aa9fa04f01448884f6@sentry.io/279552",release:"7a0d4df0494044e272d48898e92e05cbe083382b"})</script><link href="/react/static/css/main.86da614b.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div><script type="text/javascript" src="/react/static/js/main.2102b17e.js"></script></body></html>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name="theme-color" content="#000000"><link rel="manifest" href="/react/manifest.json"><link rel="shortcut icon" href="/react/favicon.ico"><title>Sentry Demo</title><script src="https://browser.sentry-cdn.com/5.4.1/bundle.min.js" crossorigin="anonymous"></script><script>Sentry.init({
+      dsn: 'https://f3e1b754a04b4dc1be1b54454ec6d238@sentry.io/1356467',
+      release: "5e5cb3cd5693c17df48893fb0e0bb022d6515cef",
+      environment: "prod",
+      beforeSend(event) {
+        // Check if it is an exception, if so, show the report dialog
+        if (event.exception) {
+          Sentry.showReportDialog();
+        }
+        return event;
+      }
+    });</script><link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet"><link href="/react/static/css/main.95cb08a1.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root" class="root"></div><script type="text/javascript" src="/react/static/js/main.ac7d73ff.js"></script></body></html>
