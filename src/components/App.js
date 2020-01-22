@@ -108,7 +108,7 @@ class App extends Component {
   }
 
   checkout() {
-    this.myCodeIsNotPerfect();
+    // this.myCodeIsNotPerfect();
 
     /*
       POST request to /checkout endpoint.
@@ -127,7 +127,7 @@ class App extends Component {
     });
     // perform request (set transctionID as header and throw error appropriately)
     request.post({
-        url: `http://localhost:${PORT}/checkout`,
+        url : 'https://sentry-demos-flask.herokuapp.com/checkout',
         json: order,
         headers: {
           "X-Session-ID": this.sessionId,

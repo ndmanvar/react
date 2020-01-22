@@ -1,6 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
+  "homepage": "http://ndmanvar.github.io/react",
   "private": true,
   "dependencies": {
     "@sentry/cli": "^1.37.0",
