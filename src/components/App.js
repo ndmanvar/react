@@ -5,8 +5,8 @@ import wrenchImg from "../assets/wrench.png";
 import nailsImg from "../assets/nails.png";
 import hammerImg from "../assets/hammer.png";
 
-const PORT = process.env.REACT_APP_PORT || 3001;
-const BACKEND = process.env.REACT_APP_BACKEND || `http://localhost:${PORT}`;
+const PORT = process.env.REACT_APP_PORT || 3001
+const request = require('request');
 
 const monify = n => (n / 100).toFixed(2);
 const getUniqueId = () => '_' + Math.random().toString(36).substr(2, 9);
@@ -14,10 +14,10 @@ const getUniqueId = () => '_' + Math.random().toString(36).substr(2, 9);
 class App extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       cart: []
     };
+
     // generate random email
     this.email =
       Math.random()
@@ -72,7 +72,6 @@ class App extends Component {
   }
 
   buyItem(item) {
-
     const cart = [].concat(this.state.cart);
     cart.push(item);
     console.log(item);
@@ -108,7 +107,8 @@ class App extends Component {
       .then(json => console.log(json));
   }
 
-  async checkout() {
+  checkout() {
+    this.myCodeIsNotPerfect();
 
     /*
       POST request to /checkout endpoint.
@@ -120,18 +120,31 @@ class App extends Component {
       cart: this.state.cart
     };
 
-    const response = await fetch(`${BACKEND}/checkout`, {
-      method: "POST",
-      body: JSON.stringify(order)
-    })
-    console.log('response', response) // url
-    if (!response.ok) {
-      throw new Error(response.status + " - " + (response.statusText || response.body));
-    }
+    // generate unique transactionId and set as Sentry tag
+    const transactionId = getUniqueId();
+    Sentry.configureScope(scope => {
+      scope.setTag("transaction_id", transactionId);
+    });
+    // perform request (set transctionID as header and throw error appropriately)
+    request.post({
+        url: `http://localhost:${PORT}/checkout`,
+        json: order,
+        headers: {
+          "X-Session-ID": this.sessionId,
+          "X-Transaction-ID": transactionId
 
-    this.setState({ success: true });
-    return response.text()
-
+        }
+      }, (error, response) => {
+        if (error) {
+          throw error;
+        }
+        if (response.statusCode === 200) {
+          this.setState({ success: true });
+        } else {
+          throw new Error(response.statusCode + " - " + (response.statusMessage || response.body));
+        }
+      }
+    );
   }
 
   render() {
