@@ -1,6 +1,7 @@
-node_modules/*
+*.pyc
+*.egg-info
+.vscode
+.DS_STORE
+node_modules
+.env
 build/
-.idea/
-.DS_Store
-settings.json
-.vscode/
