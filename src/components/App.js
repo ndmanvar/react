@@ -27,6 +27,8 @@ class App extends Component {
         .toString(36)
         .substring(2, 6) + "@yahoo.com";
 
+    this.customerType = this.getPlanName();
+
     this.store = [
       {
         id: "wrench",
@@ -67,7 +69,7 @@ class App extends Component {
     // Add context to error/event
     Sentry.configureScope(scope => {
       scope.setUser({ email: this.email }); // attach user/email context
-      scope.setTag("customerType", this.getPlanName()); // custom-tag
+      scope.setTag("customerType", this.customerType); // custom-tag
     });
 
     //Will add an XHR Sentry breadcrumb
@@ -132,7 +134,8 @@ class App extends Component {
     */
     const order = {
       email: this.email,
-      cart: this.state.cart
+      cart: this.state.cart,
+      customerType: this.customerType
     };
 
     // generate unique transactionId and set as Sentry tag
