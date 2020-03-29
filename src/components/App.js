@@ -124,7 +124,7 @@ class App extends Component {
     });
 
     if (IS_WORKFLOW_DEMO) {
-      this.myCodeIsPerfect();
+      this.myCodeIsNotPerfect();
     }
 
     /*
