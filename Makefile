@@ -38,3 +38,4 @@ deploy_react:
 # ---
 
 .PHONY: all build_react setup_release create_release associate_commits upload_sourcemaps build deploy_react
+git brnach

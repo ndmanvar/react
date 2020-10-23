@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@bugsnag/js": "^7.3.4",
     "@sentry/cli": "^1.37.0",
     "history": "^1.17.0",
     "material-ui": "^0.18.7",
