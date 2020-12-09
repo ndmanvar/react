@@ -16,7 +16,7 @@ GCP_WORKSPACE_NAME=workspace_react_errors
 build_react:
 	source $(HOME)/.nvm/nvm.sh && nvm use && npm install && npm run build
 
-setup_release: create_release associate_commits upload_sourcemaps
+setup_release: create_release upload_sourcemaps
 
 create_release:
 	sentry-cli releases -o $(SENTRY_ORG) new -p $(SENTRY_PROJECT) $(VERSION)

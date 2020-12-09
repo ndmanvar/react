@@ -5,6 +5,7 @@
   "dependencies": {
     "@sentry/cli": "^1.37.0",
     "history": "^1.17.0",
+    "logrocket": "^1.0.14",
     "material-ui": "^0.18.7",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",

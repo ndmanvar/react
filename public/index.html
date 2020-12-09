@@ -26,17 +26,17 @@
   <script src="https://browser.sentry-cdn.com/5.13.2/bundle.min.js" crossorigin="anonymous"></script>
 
   <script>
-    Sentry.init({
-      dsn: 'https://f3e1b754a04b4dc1be1b54454ec6d238@sentry.io/1356467',
-      release: "%REACT_APP_RELEASE%",
-      environment: "%REACT_APP_ENVIRONMENT%",
-      beforeSend(event) {
-        if (event.exception) {
-          Sentry.showReportDialog();
-        }
-        return event;
-      }
-    });
+    // Sentry.init({
+    //   dsn: 'https://f3e1b754a04b4dc1be1b54454ec6d238@sentry.io/1356467',
+    //   release: "%REACT_APP_RELEASE%",
+    //   environment: "%REACT_APP_ENVIRONMENT%",
+    //   beforeSend(event) {
+    //     if (event.exception) {
+    //       Sentry.showReportDialog();
+    //     }
+    //     return event;
+    //   }
+    // });
   </script>
 <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
 
